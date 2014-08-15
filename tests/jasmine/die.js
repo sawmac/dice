@@ -138,4 +138,22 @@ describe("Die", function() {
     })
   });
 
+  describe(" when upper smaller than lower ", function () {
+    it('should through exception for out of range', function () {
+      expect(function () { makeDie(10,-10) }).toThrow();
+    });
+  });
+
+  describe(" when lower is same as upper ", function () {
+    it('should through exception for out of range', function () {
+      expect(function () { makeDie(10,10) }).toThrow();
+    });
+  });
+
+  describe(" no arguments passed to makeDie ", function () {
+    it('should through exception for out of range', function () {
+      expect(makeDie).toThrow();
+    });
+  });
+
 });
