@@ -14,6 +14,9 @@ var die =  {
 
 var makeDie = function () {
   var upperRoll, lowerRoll = 1, symbols = false, dieObj;
+  if (arguments.length === 0) {
+    throw new Error('No arguments passed to function');
+  }
   // symbols passed as an array
   if (Array.isArray(arguments[0])) {
     upperRoll = arguments[0].length;
@@ -21,6 +24,9 @@ var makeDie = function () {
   } else if (arguments.length > 1) { // die from x to y
     lowerRoll = arguments[0];
     upperRoll = arguments[1];
+    if (lowerRoll > upperRoll || lowerRoll === upperRoll) {
+      throw new Error('First value should be less than second value');
+    }
   } else  { // die from 1 to y
     upperRoll = arguments[0];
   }
@@ -28,33 +34,7 @@ var makeDie = function () {
   dieObj = Object.create(die, {
     lower : { value : lowerRoll },
     upper : { value : upperRoll },
-    symbols : { value : symbols}
+    symbols : { value : symbols }
   });
   return dieObj;
 }
-/*
-var sixSided = makeDie(1, 6);
-var twelveSided = makeDie(1, 12);
-var fanDooble = makeDie([
-                'fandooble',
-                'red dragon', 
-                'wizard', 
-                'knight', 
-                'green dragon', 
-                'gold']
-);
-
-
-var rollCounts = [0,0,0,0,0,0,0,0,0,0,0,0];
-
-for (var i = 1 ; i < 1000 ; i += 1) {
-  var roll = twelveSided.roll() - 1;
-  rollCounts[roll] += 1;
-}
-
-console.log(rollCounts);
-
-console.log(fanDooble.roll());
-console.log(sixSided.roll());
-console.log(twelveSided.roll());
-*/
