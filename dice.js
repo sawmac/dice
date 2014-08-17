@@ -1,18 +1,4 @@
-var die =  {
-  roll : function() {
-    /// 1 to this.upper 
-    var roll = Math.floor(Math.random() * (this.upper - this.lower + 1)) + this.lower;
-    if (this.symbols) {
-      /* symbols are in array so need to subtract 1 to 
-         get to value beween 0 - x */
-      return this.symbols[roll-1];
-    } else {
-      return roll;
-    }
-  }
-}
-
-var makeDie = function () {
+var Die = function () {
   var upperRoll, lowerRoll = 1, symbols = false, dieObj;
   if (arguments.length === 0) {
     throw new Error('No arguments passed to function');
@@ -30,11 +16,31 @@ var makeDie = function () {
   } else  { // die from 1 to y
     upperRoll = arguments[0];
   }
-  // create the die
-  dieObj = Object.create(die, {
-    lower : { value : lowerRoll },
-    upper : { value : upperRoll },
-    symbols : { value : symbols }
-  });
-  return dieObj;
+  this.lower = lowerRoll;
+  this.upper = upperRoll;
+  this.symbols = symbols;
+  this.rollHistory = []; 
+  return this;
 }
+
+Die.prototype = {
+  roll : function () {
+    var roll = Math.floor(Math.random() * (this.upper - this.lower + 1)) + this.lower;
+    if (this.symbols) {
+      /* symbols are in array so need to subtract 1 to 
+         get to value beween 0 - x */
+      return this.symbols[roll-1];
+    } else {
+      this.rollHistory.push(roll);
+      return roll;
+    }
+  },
+  history : function(action) {
+    if (action === 'report') {
+      return this.rollHistory; 
+    } else if (action === 'clear') {
+      this.rollHistory.length = 0;
+      return this.rollHistory;
+    }
+  } 
+}  
