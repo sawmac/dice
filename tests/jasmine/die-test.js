@@ -35,7 +35,7 @@ describe("Die", function() {
   describe(" when six sided ", function () {
     var die;
     beforeEach(function () {
-      die = makeDie(6);
+      die = new Die(6);
     });
     it('should have a 1', function () {
       expect(die.lower).toBe(1);
@@ -56,7 +56,7 @@ describe("Die", function() {
   describe(" when twenty sided ", function () {
     var die;
     beforeEach(function () {
-      die = makeDie(20);
+      die = new Die(20);
     });
     it('should have a 1', function () {
       expect(die.lower).toBe(1);
@@ -75,7 +75,7 @@ describe("Die", function() {
   describe(" when 2-4 sided ", function () {
     var die;
     beforeEach(function () {
-      die = makeDie(2,4);
+      die = new Die(2,4);
     });
     it('should have a 2', function () {
       expect(die.lower).toBe(2);
@@ -94,7 +94,7 @@ describe("Die", function() {
   describe(" when -10 to 100 ", function () {
     var die;
     beforeEach(function () {
-      die = makeDie(-10,100);
+      die = new Die(-10,100);
     });
     it('should have a -10', function () {
       expect(die.lower).toBe(-10);
@@ -122,7 +122,7 @@ describe("Die", function() {
                 'gold'];
 
     beforeEach(function () {
-      die = makeDie(faces);
+      die = new Die(faces);
     });
     it('should have a 1', function () {
       expect(die.lower).toBe(1);
@@ -140,19 +140,19 @@ describe("Die", function() {
 
   describe(" when upper smaller than lower ", function () {
     it('should through exception for out of range', function () {
-      expect(function () { makeDie(10,-10) }).toThrow();
+      expect(function () { new Die(10,-10) }).toThrow();
     });
   });
 
   describe(" when lower is same as upper ", function () {
     it('should through exception for out of range', function () {
-      expect(function () { makeDie(10,10) }).toThrow();
+      expect(function () { new Die(10,10) }).toThrow();
     });
   });
 
   describe(" no arguments passed to makeDie ", function () {
-    it('should through exception for out of range', function () {
-      expect(makeDie).toThrow();
+    it('should through exception no arguments', function () {
+      expect(Die).toThrow();
     });
   });
 
