@@ -74,4 +74,5 @@ var rollParser = function(str) {
   return results;
 }
 var testString = window.location.search.substr(1);
+var testString = decodeURIComponent(testString);
 console.log(rollParser(testString));
