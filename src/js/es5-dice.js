@@ -21,7 +21,7 @@ var die =  {
       return this.rollHistory;
     }
   }
-}
+};
 
 var makeDie = function () {
   var upperRoll, lowerRoll = 1, symbols = false, dieObj;
@@ -49,6 +49,6 @@ var makeDie = function () {
     rollHistory : { value : [] }
   });
   return dieObj;
-}
+};
 
 six = makeDie(1,6);

@@ -21,7 +21,7 @@ var Die = function () {
   this.symbols = symbols;
   this.rollHistory = []; 
   return this;
-}
+};
 
 Die.prototype = {
   roll : function () {
@@ -43,4 +43,4 @@ Die.prototype = {
       return this.rollHistory;
     }
   } 
-}  
+};  

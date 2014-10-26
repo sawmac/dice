@@ -72,7 +72,7 @@ var rollParser = function(str) {
   results.str = str;
   results.total = total;
   return results;
-}
+};
 var testString = window.location.search.substr(1);
 var testString = decodeURIComponent(testString);
 console.log(rollParser(testString));
