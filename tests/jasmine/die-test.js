@@ -35,7 +35,7 @@ describe("Die", function() {
   describe(" when six sided ", function () {
     var die;
     beforeEach(function () {
-      die = new Die(6);
+      die = Object.create(Die).init(6);
     });
     it('should have a 1', function () {
       expect(die.lower).toBe(1);
@@ -56,7 +56,7 @@ describe("Die", function() {
   describe(" when twenty sided ", function () {
     var die;
     beforeEach(function () {
-      die = new Die(20);
+      die = Object.create(Die).init(20);
     });
     it('should have a 1', function () {
       expect(die.lower).toBe(1);
@@ -75,7 +75,7 @@ describe("Die", function() {
   describe(" when 2-4 sided ", function () {
     var die;
     beforeEach(function () {
-      die = new Die(2,4);
+      die = Object.create(Die).init(2,4);
     });
     it('should have a 2', function () {
       expect(die.lower).toBe(2);
@@ -94,7 +94,7 @@ describe("Die", function() {
   describe(" when -10 to 100 ", function () {
     var die;
     beforeEach(function () {
-      die = new Die(-10,100);
+      die = Object.create(Die).init(-10,100);
     });
     it('should have a -10', function () {
       expect(die.lower).toBe(-10);
@@ -122,7 +122,7 @@ describe("Die", function() {
                 'gold'];
 
     beforeEach(function () {
-      die = new Die(faces);
+      die = Object.create(Die).init(faces);
     });
     it('should have a 1', function () {
       expect(die.lower).toBe(1);
@@ -139,20 +139,14 @@ describe("Die", function() {
   });
 
   describe(" when upper smaller than lower ", function () {
-    it('should through exception for out of range', function () {
-      expect(function () { new Die(10,-10) }).toThrow();
+    it('should throw exception for out of range', function () {
+      expect(function () { Object.create(Die).init(10,-10) }).toThrow();
     });
   });
 
   describe(" when lower is same as upper ", function () {
-    it('should through exception for out of range', function () {
-      expect(function () { new Die(10,10) }).toThrow();
-    });
-  });
-
-  describe(" no arguments passed to makeDie ", function () {
-    it('should through exception no arguments', function () {
-      expect(Die).toThrow();
+    it('should throw exception for out of range', function () {
+      expect(function () { Object.create(Die).init(10,10) }).toThrow();
     });
   });
 
